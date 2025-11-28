@@ -1,0 +1,211 @@
+/**
+ * GrooveAgent Node.js Entry Point
+ * Primary entry for node.script in Max for Live
+ *
+ * Handles bidirectional JSON messaging between Max and Node.js
+ *
+ * @module grooveagent-node
+ */
+
+const { info, error, setMaxApiPost, LOG_PREFIX } = require('./utils/logger.js');
+const { ErrorCode, getSuggestion, categorizeError } = require('./utils/errors.js');
+
+const VERSION = '1.0.0';
+
+// ============================================================================
+// Type Definitions (JSDoc)
+// ============================================================================
+
+/**
+ * Command request from Max
+ * @typedef {Object} CommandRequest
+ * @property {string} cmd - Command identifier (kebab-case)
+ * @property {string} id - Unique request ID for response matching
+ * @property {Object} [params] - Command-specific parameters
+ */
+
+/**
+ * Command response to Max
+ * @typedef {Object} CommandResponse
+ * @property {string} id - Matches request ID
+ * @property {boolean} success - Operation result
+ * @property {Object} [data] - Success payload
+ * @property {ErrorDetail} [error] - Error details (when success=false)
+ */
+
+/**
+ * Error detail object
+ * @typedef {Object} ErrorDetail
+ * @property {string} code - Error code (SCREAMING_SNAKE_CASE)
+ * @property {string} message - Human-readable description
+ * @property {string} [suggestion] - Remediation hint
+ */
+
+// ============================================================================
+// Command Handlers
+// ============================================================================
+
+/**
+ * Command handler registry
+ * @type {Map<string, function(Object): Promise<Object>>}
+ */
+const commandHandlers = new Map();
+
+/**
+ * Register a command handler
+ * @param {string} cmd - Command name (kebab-case)
+ * @param {function(Object): Promise<Object>} handler - Handler function
+ */
+function registerCommand(cmd, handler) {
+  commandHandlers.set(cmd, handler);
+}
+
+/**
+ * Ping command handler
+ * Returns pong response for connection verification
+ * @returns {{pong: boolean}}
+ */
+function handlePing() {
+  return { pong: true };
+}
+
+// Register built-in commands
+registerCommand('ping', handlePing);
+
+// ============================================================================
+// Core Message Handling
+// ============================================================================
+
+/**
+ * Creates a success response
+ * @param {string} id - Request ID
+ * @param {Object} data - Response data
+ * @returns {CommandResponse}
+ */
+function createSuccessResponse(id, data) {
+  return {
+    id,
+    success: true,
+    data
+  };
+}
+
+/**
+ * Creates an error response
+ * @param {string} id - Request ID
+ * @param {string} code - Error code
+ * @param {string} message - Error message
+ * @param {string} [suggestion] - Remediation hint (auto-populated from getSuggestion if not provided)
+ * @returns {CommandResponse}
+ */
+function createErrorResponse(id, code, message, suggestion) {
+  return {
+    id,
+    success: false,
+    error: {
+      code,
+      message,
+      suggestion: suggestion || getSuggestion(code)
+    }
+  };
+}
+
+/**
+ * Handle incoming command from Max
+ * @param {CommandRequest} message - Command request object
+ * @returns {Promise<CommandResponse>} Response object
+ */
+async function handleCommand(message) {
+  const id = message?.id ?? '';
+  const cmd = message?.cmd;
+
+  // Validate request ID
+  if (!id) {
+    error('handleCommand', 'Missing request ID');
+    return createErrorResponse(
+      '',
+      ErrorCode.INVALID_PARAMS,
+      'Missing required "id" field in request'
+    );
+  }
+
+  // Validate command field
+  if (!cmd) {
+    error('handleCommand', `[${id}] Missing command`);
+    return createErrorResponse(
+      id,
+      ErrorCode.INVALID_PARAMS,
+      'Missing required "cmd" field in request',
+      'Include a "cmd" field specifying the command to execute'
+    );
+  }
+
+  info('handleCommand', `[${id}] Processing: ${cmd}`);
+
+  try {
+    // Look up handler
+    const handler = commandHandlers.get(cmd);
+
+    if (!handler) {
+      error('handleCommand', `[${id}] Unknown command: ${cmd}`);
+      return createErrorResponse(id, ErrorCode.UNKNOWN_COMMAND, `Command "${cmd}" not recognized`);
+    }
+
+    // Execute handler
+    const data = await handler(message.params || {});
+    info('handleCommand', `[${id}] Success: ${cmd}`);
+    return createSuccessResponse(id, data);
+  } catch (err) {
+    const errorCode = categorizeError(err);
+    error('handleCommand', `[${id}] ${errorCode}: ${err.message}`);
+    return createErrorResponse(id, errorCode, err.message || 'An unexpected error occurred');
+  }
+}
+
+// ============================================================================
+// Max API Integration
+// ============================================================================
+
+/** @type {Object|null} */
+let maxApi = null;
+
+/**
+ * Initialize max-api integration
+ * Called automatically when running in node.script context
+ */
+function initMaxApi() {
+  try {
+    // Require max-api (only available in node.script context)
+    maxApi = require('max-api');
+
+    // Set up logger to use max-api
+    setMaxApiPost((msg) => maxApi.post(msg));
+
+    // Register command handler
+    maxApi.addHandler('cmd', async (message) => {
+      const response = await handleCommand(message);
+      maxApi.outlet(response);
+    });
+
+    // Startup notification
+    maxApi.post(`${LOG_PREFIX} Ready (Node ${process.version})`);
+    info('init', 'Handler registered, ready to receive commands');
+  } catch (err) {
+    // Not running in node.script context (e.g., testing)
+    // This is expected during unit tests
+    console.log(`${LOG_PREFIX} Running outside Max context (${err.message})`);
+  }
+}
+
+// Auto-initialize when module loads
+initMaxApi();
+
+// Exports for testing
+module.exports = {
+  VERSION,
+  ErrorCode,
+  handleCommand,
+  registerCommand,
+  createErrorResponse,
+  createSuccessResponse
+};

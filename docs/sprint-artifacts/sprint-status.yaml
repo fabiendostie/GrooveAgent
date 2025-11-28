@@ -1,0 +1,112 @@
+# generated: 2025-11-27
+# project: GrooveAgent
+# project_key: groove-agent
+# tracking_system: file-system
+# story_location: docs/sprint-artifacts
+
+# STATUS DEFINITIONS:
+# ==================
+# Epic Status:
+#   - backlog: Epic exists in epic file but not contexted
+#   - contexted: Epic tech context created (required before drafting stories)
+#
+# Story Status:
+#   - backlog: Story only exists in epic file
+#   - drafted: Story file created in stories folder
+#   - ready-for-dev: Draft approved and story context created
+#   - in-progress: Developer actively working on implementation
+#   - review: Under SM review (via code-review workflow)
+#   - done: Story completed
+#
+# Retrospective Status:
+#   - optional: Can be completed but not required
+#   - completed: Retrospective has been done
+#
+# WORKFLOW NOTES:
+# ===============
+# - Epics should be 'contexted' before stories can be 'drafted'
+# - Stories can be worked in parallel if team capacity allows
+# - SM typically drafts next story after previous one is 'done' to incorporate learnings
+# - Dev moves story to 'review', SM reviews, then Dev moves to 'done'
+
+generated: 2025-11-27
+project: GrooveAgent
+project_key: groove-agent
+tracking_system: file-system
+story_location: docs/sprint-artifacts
+
+development_status:
+  # ═══════════════════════════════════════════════════════════════════
+  # Epic 1: Foundation & TELIS Setup
+  # Goal: Establish project infrastructure with TELIS methodology for <2% code error rate
+  # User Value: Enables all development with verified API accuracy and zero hallucination
+  # ═══════════════════════════════════════════════════════════════════
+  epic-1: contexted
+  1-1-project-structure-and-dependencies: done
+  1-2-telis-knowledge-shards: done
+  1-3-max-node-message-bridge: done
+  1-4-basic-max-for-live-device-shell: done
+  1-5-error-handling-and-logging-foundation: review
+  epic-1-retrospective: optional
+
+  # ═══════════════════════════════════════════════════════════════════
+  # Epic 2: Core Groove Magic
+  # Goal: Deliver the complete "Apply Groove" flow — THE MAGIC MOMENT
+  # User Value: User enters "J Dilla", clicks Apply, hears transformed groove
+  # ═══════════════════════════════════════════════════════════════════
+  epic-2: backlog
+  2-1-artist-input-and-ui-controls: backlog
+  2-2-basic-display-screen-jsui: backlog
+  2-3-ollama-provider-integration: backlog
+  2-4-groove-recipe-generation: backlog
+  2-5-liveapi-clip-operations: backlog
+  2-6-midi-transformation-engine: backlog
+  2-7-variation-generation: backlog
+  2-8-apply-groove-complete-flow: backlog
+  epic-2-retrospective: optional
+
+  # ═══════════════════════════════════════════════════════════════════
+  # Epic 3: Multi-Provider LLM Support
+  # Goal: Enable users to choose their preferred LLM provider beyond Ollama
+  # User Value: Users without Ollama can use Claude, OpenAI, or Groq
+  # ═══════════════════════════════════════════════════════════════════
+  epic-3: backlog
+  3-1-llm-provider-abstraction-layer: backlog
+  3-2-claude-provider-integration: backlog
+  3-3-openai-provider-integration: backlog
+  3-4-groq-provider-integration: backlog
+  epic-3-retrospective: optional
+
+  # ═══════════════════════════════════════════════════════════════════
+  # Epic 4: Settings & Persistence
+  # Goal: Remember user preferences between sessions
+  # User Value: Users don't have to reconfigure settings every time
+  # ═══════════════════════════════════════════════════════════════════
+  epic-4: backlog
+  4-1-settings-storage-system: backlog
+  4-2-settings-panel-ui: backlog
+  4-3-preference-memory: backlog
+  epic-4-retrospective: optional
+
+  # ═══════════════════════════════════════════════════════════════════
+  # Epic 5: First-Run Onboarding
+  # Goal: Guide new users through initial setup
+  # User Value: New users get clear guidance instead of confusion
+  # ═══════════════════════════════════════════════════════════════════
+  epic-5: backlog
+  5-1-first-run-detection: backlog
+  5-2-onboarding-flow: backlog
+  5-3-re-access-onboarding: backlog
+  epic-5-retrospective: optional
+
+  # ═══════════════════════════════════════════════════════════════════
+  # Epic 6: Display Screen Polish
+  # Goal: Create captivating psychedelic piano roll animation
+  # User Value: The 20-30 second wait becomes an enjoyable visual experience
+  # ═══════════════════════════════════════════════════════════════════
+  epic-6: backlog
+  6-1-piano-roll-animation: backlog
+  6-2-progress-bar-and-status: backlog
+  6-3-citation-display-and-pagination: backlog
+  6-4-theme-adaptation: backlog
+  epic-6-retrospective: optional

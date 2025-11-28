@@ -1,0 +1,30 @@
+{
+  "name": "grooveagent-node",
+  "version": "1.0.0",
+  "description": "GrooveAgent Node.js module for Max for Live",
+  "type": "commonjs",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest",
+    "lint": "eslint ."
+  },
+  "keywords": [
+    "max-for-live",
+    "midi",
+    "groove",
+    "ableton",
+    "llm"
+  ],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "max-api": "^1.0.0"
+  },
+  "devDependencies": {
+    "jest": "^29.0.0",
+    "eslint": "^8.0.0"
+  },
+  "engines": {
+    "node": ">=20.0.0"
+  }
+}

@@ -1,0 +1,27 @@
+# Dependencies
+node_modules/
+src/node/node_modules/
+
+# Build outputs
+dist/
+build/
+
+# Generated files
+package-lock.json
+*.min.js
+
+# Max for Live files
+*.amxd
+*.maxpat
+*.maxpresets
+
+# Documentation (preserve formatting)
+*.md
+
+# Cursor/AI
+.cursor/
+agent-tools/
+
+# BMAD
+.bmad/
+
