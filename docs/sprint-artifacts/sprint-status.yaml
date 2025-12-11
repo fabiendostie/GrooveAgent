@@ -118,7 +118,7 @@ development_status:
   # PRIORITY: Must be implemented BEFORE continuing Epics 2-6
   # ═══════════════════════════════════════════════════════════════════
   epic-7: contexted
-  7-1-workflow-command-dispatcher: ready-for-dev
+  7-1-workflow-command-dispatcher: done
   7-2-telis-shard-auto-loader: ready-for-dev
   7-3-bmad-agent-definitions: ready-for-dev
   7-4-groove-research-workflow: ready-for-dev

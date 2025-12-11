@@ -69,8 +69,79 @@ function handlePing() {
   return { pong: true };
 }
 
+/**
+ * Apply Groove command handler (Story 2.1 - stub implementation)
+ * Receives artist, provider, and groove parameters from UI
+ *
+ * @param {Object} params - Command parameters
+ * @param {string} params.artist - Artist name
+ * @param {string} params.provider - LLM provider (ollama, claude, openai, groq)
+ * @param {number} params.bars - Number of bars (1, 2, 4, 8, 16)
+ * @param {number} params.variations - Number of variations to generate (1-6)
+ * @param {number} params.intensity - Groove intensity percentage (0-200)
+ * @returns {{status: string, message: string}}
+ */
+function handleApplyGroove(params) {
+  const { artist, provider, bars, variations, intensity } = params;
+
+  info(
+    'apply-groove',
+    `Artist: ${artist}, Provider: ${provider}, Bars: ${bars}, Variations: ${variations}, Intensity: ${intensity}%`
+  );
+
+  // TODO (Story 2.3-2.8): Implement full groove application flow
+  // - Story 2.3: Call LLM provider to generate groove recipe
+  // - Story 2.4: Parse and validate groove recipe JSON
+  // - Story 2.5: Read clip data via LiveAPI
+  // - Story 2.6: Apply MIDI transformations
+  // - Story 2.7: Generate variations
+  // - Story 2.8: Write transformed clips back to Ableton
+
+  // Stub response for Story 2.1
+  return {
+    status: 'received',
+    message: `Apply Groove request received for ${artist} using ${provider}`,
+    params: {
+      artist,
+      provider,
+      bars,
+      variations,
+      intensity
+    }
+  };
+}
+
+/**
+ * Settings command handler (stub for Epic 4)
+ * @returns {{message: string}}
+ */
+function handleSettings() {
+  info('settings', 'Settings requested (not yet implemented)');
+
+  // TODO (Epic 4): Implement settings panel
+  return {
+    message: 'Settings panel will be implemented in Epic 4'
+  };
+}
+
+// Import workflow dispatcher (Epic 7 - Story 7.1)
+const {
+  handleWorkflowResearch,
+  handleWorkflowDevelop,
+  handleWorkflowDocument,
+  handleSwarmStart
+} = require('./commands/workflow-dispatcher.js');
+
 // Register built-in commands
 registerCommand('ping', handlePing);
+registerCommand('apply-groove', handleApplyGroove);
+registerCommand('settings', handleSettings);
+
+// Register workflow commands (Epic 7 - Story 7.1)
+registerCommand('workflow:research', handleWorkflowResearch);
+registerCommand('workflow:develop', handleWorkflowDevelop);
+registerCommand('workflow:document', handleWorkflowDocument);
+registerCommand('swarm:start', handleSwarmStart);
 
 // ============================================================================
 // Core Message Handling
