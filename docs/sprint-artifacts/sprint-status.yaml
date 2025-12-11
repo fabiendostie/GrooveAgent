@@ -46,7 +46,7 @@ development_status:
   1-2-telis-knowledge-shards: done
   1-3-max-node-message-bridge: done
   1-4-basic-max-for-live-device-shell: done
-  1-5-error-handling-and-logging-foundation: review
+  1-5-error-handling-and-logging-foundation: done
   epic-1-retrospective: optional
 
   # ═══════════════════════════════════════════════════════════════════
@@ -54,15 +54,15 @@ development_status:
   # Goal: Deliver the complete "Apply Groove" flow — THE MAGIC MOMENT
   # User Value: User enters "J Dilla", clicks Apply, hears transformed groove
   # ═══════════════════════════════════════════════════════════════════
-  epic-2: backlog
-  2-1-artist-input-and-ui-controls: backlog
-  2-2-basic-display-screen-jsui: backlog
-  2-3-ollama-provider-integration: backlog
-  2-4-groove-recipe-generation: backlog
-  2-5-liveapi-clip-operations: backlog
-  2-6-midi-transformation-engine: backlog
-  2-7-variation-generation: backlog
-  2-8-apply-groove-complete-flow: backlog
+  epic-2: contexted
+  2-1-artist-input-and-ui-controls: ready-for-dev
+  2-2-basic-display-screen-jsui: ready-for-dev
+  2-3-ollama-provider-integration: ready-for-dev
+  2-4-groove-recipe-generation: ready-for-dev
+  2-5-liveapi-clip-operations: ready-for-dev
+  2-6-midi-transformation-engine: ready-for-dev
+  2-7-variation-generation: ready-for-dev
+  2-8-apply-groove-complete-flow: ready-for-dev
   epic-2-retrospective: optional
 
   # ═══════════════════════════════════════════════════════════════════
@@ -110,3 +110,20 @@ development_status:
   6-3-citation-display-and-pagination: backlog
   6-4-theme-adaptation: backlog
   epic-6-retrospective: optional
+
+  # ═══════════════════════════════════════════════════════════════════
+  # Epic 7: Sub-Agent Agentic Workflows 🚀 META-EPIC
+  # Goal: Enable agentic multi-agent workflows using BMAD + TELIS integration
+  # User Value: Orchestrate specialized AI agents for development, testing, docs
+  # PRIORITY: Must be implemented BEFORE continuing Epics 2-6
+  # ═══════════════════════════════════════════════════════════════════
+  epic-7: contexted
+  7-1-workflow-command-dispatcher: ready-for-dev
+  7-2-telis-shard-auto-loader: ready-for-dev
+  7-3-bmad-agent-definitions: ready-for-dev
+  7-4-groove-research-workflow: ready-for-dev
+  7-5-code-generation-workflow: ready-for-dev
+  7-6-documentation-workflow: ready-for-dev
+  7-7-sprint-artifact-auto-update: ready-for-dev
+  7-8-progress-dashboard: ready-for-dev
+  epic-7-retrospective: optional

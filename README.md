@@ -209,16 +209,31 @@ This project uses **Husky** + **lint-staged** to ensure code quality:
 | [Epics & Stories](docs/epics.md) | Development roadmap |
 | [Tech Spec](docs/sprint-artifacts/tech-spec-epic-1.md) | Technical specifications |
 
+### AI/Developer Context (TELIS Shards)
+
+| Shard | Purpose |
+|-------|---------|
+| [m4l-shards](docs/context/m4l-shards.md) | node.script & js object patterns |
+| [liveapi-shards](docs/context/liveapi-shards.md) | LiveAPI/LOM clip operations |
+| [jsui-shards](docs/context/jsui-shards.md) | mgraphics drawing API |
+| [live-ui-shards](docs/context/live-ui-shards.md) | live.text/menu/dial controls |
+| [max-objects-shards](docs/context/max-objects-shards.md) | route/pack/sel routing |
+| [llm-shards](docs/context/llm-shards.md) | LLM provider integration |
+| [midi-math](docs/context/midi-math.md) | MIDI transformation formulas |
+
 <br/>
 
 ## 🗺️ Roadmap
 
 - [x] **Epic 1:** Foundation & Setup *(Complete)*
+- [ ] **Epic 7:** 🚀 Sub-Agent Agentic Workflows *(In Progress - META-EPIC)*
 - [ ] **Epic 2:** Core Groove Magic - The main feature
 - [ ] **Epic 3:** Multi-Provider LLM Support
 - [ ] **Epic 4:** Settings & Persistence
 - [ ] **Epic 5:** First-Run Onboarding
 - [ ] **Epic 6:** Display Screen Polish
+
+> **Note:** Epic 7 is a META-EPIC that provides the agentic workflow system (BMAD + TELIS integration) used to accelerate development of Epics 2-6.
 
 <br/>
 

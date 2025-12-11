@@ -1099,24 +1099,135 @@ So that **it works in any Ableton setup**.
 
 ---
 
+## Epic 7: Sub-Agent Agentic Workflows
+
+**Goal:** Enable agentic multi-agent workflows for development, documentation, and recipe research using BMAD + TELIS integration.
+
+**User Value:** Developers can orchestrate specialized AI agents to handle complex tasks (code generation, testing, documentation, recipe research) with built-in quality assurance loops, dramatically accelerating development while maintaining high quality.
+
+**Strategic Importance:** 🚀 **META-EPIC** - This epic provides the agentic workflow system that will be USED to complete the remaining stories in Epics 2-6. Implementing Epic 7 first transforms the development process itself.
+
+### Story 7.1: Workflow Command Dispatcher
+
+As a **developer**,
+I want **commands to trigger BMAD workflows**,
+So that **I can launch agentic workflows from the GrooveAgent command system**.
+
+**Acceptance Criteria:**
+
+**Given** the workflow dispatcher is implemented
+**When** I send `{cmd: 'workflow:research', id: 'req-001', params: {artist_name: 'J Dilla'}}`
+**Then** the command is routed to `.bmad/custom/workflows/groove-research/workflow.md`
+
+**And** the following commands are supported:
+- `workflow:research` → Groove Recipe research workflow
+- `workflow:develop` → Code generation workflow
+- `workflow:document` → Documentation/testing workflow
+- `swarm:start` → Generic multi-agent orchestration
+
+**Prerequisites:** Story 1.5 (Error Handling & Logging Foundation)
+
+**Technical Notes:**
+- Create `src/node/commands/workflow-dispatcher.js`
+- Register commands in `src/node/index.js`
+- Pass parameters to workflows via context object
+- Document in `docs/sprint-artifacts/7-1-workflow-command-dispatcher.md`
+
+---
+
+### Story 7.2: TELIS Shard Auto-Loader
+
+As a **developer**,
+I want **TELIS shards automatically loaded based on agent roles**,
+So that **agents have the right context without manual intervention**.
+
+**Acceptance Criteria:**
+
+**Given** an agent with role 'llm-research-expert'
+**When** the agent is invoked
+**Then** `llm-shards.md` and `midi-math.md` are automatically loaded into context
+
+**And** the shard loader provides:
+- Token counting for budget management
+- Shard rotation (unload previous, load next)
+- Symbolic compression support
+- Role-to-shard mapping
+
+**Prerequisites:** Story 1.2 (TELIS Knowledge Shards)
+
+**Technical Notes:**
+- Create `src/node/utils/telis-loader.js`
+- Implement `loadShardsForAgent(agentRole)` function
+- Create SHARD_MAP constant with role→shard mapping
+- Document in `docs/sprint-artifacts/7-2-telis-shard-auto-loader.md`
+
+---
+
+### Story 7.3: BMAD Agent Definitions
+
+As a **developer**,
+I want **BMAD agents created for Sub-Agent roles**,
+So that **I can execute specialized tasks with domain expertise**.
+
+**Acceptance Criteria:**
+
+**Given** `.bmad/custom/agents/` directory
+**When** agents are created
+**Then** the following agents exist:
+
+| Agent File | Type | Role | TELIS Shards |
+|------------|------|------|--------------|
+| `master-coordinator.md` | Module | Orchestration | None (delegates) |
+| `task-orchestrator.md` | Module | Planning | None (delegates) |
+| `llm-research-expert.md` | Expert | LLM research | llm-shards.md, midi-math.md |
+| `midi-expert.md` | Expert | MIDI transformation | midi-math.md, liveapi-shards.md |
+| `code-expert.md` | Expert | Code generation | m4l-shards.md, liveapi-shards.md |
+| `verification-agent.md` | Expert | Quality assurance | midi-math.md, m4l-shards.md |
+| `validation-agent.md` | Expert | Final review | All shards (selective) |
+
+**And** each Expert agent has a sidecar directory with:
+- `sidecar/memories.md` for persistent memory
+- `sidecar/knowledge/` for domain-specific knowledge
+
+**Prerequisites:** Story 7.2
+
+**Technical Notes:**
+- Follow BMAD agent YAML format from `.bmad/bmb/docs/agents/`
+- Use Expert agents for specialists (need memories + knowledge)
+- Use Module agents for coordinators (trigger workflows)
+- Document in `docs/sprint-artifacts/7-3-bmad-agent-definitions.md`
+
+---
+
+### Story 7.4: Groove Research Workflow
+### Story 7.5: Code Generation Workflow
+### Story 7.6: Documentation Workflow
+### Story 7.7: Sprint Artifact Auto-Update
+### Story 7.8: Progress Dashboard
+
+_(Full story details in sprint artifacts as stories are implemented)_
+
+---
+
 ## Summary
 
 **✅ Epic Breakdown Complete**
 
 | Metric | Value |
 |--------|-------|
-| Total Epics | 6 |
-| Total Stories | 27 |
+| Total Epics | 7 |
+| Total Stories | 35 (27 original + 8 Epic 7) |
 | FRs Covered | 58/58 (100%) |
-| Development Methodology | TELIS (<2% error rate) |
+| Development Methodology | TELIS (<2% error rate) + Sub-Agent workflows |
 
-**Epic Sequence:**
-1. **Foundation & TELIS Setup** — Enables development with verified APIs
-2. **Core Groove Magic** — THE MAGIC MOMENT (MVP complete)
-3. **Multi-Provider LLM** — Choice of LLM providers
-4. **Settings & Persistence** — Remember preferences
-5. **First-Run Onboarding** — Guided new user experience
-6. **Display Screen Polish** — Captivating wait animation
+**REVISED Epic Sequence:**
+1. **Foundation & TELIS Setup** ✅ — Enables development with verified APIs (COMPLETE)
+2. **🚀 Sub-Agent Agentic Workflows** ← **IMPLEMENT NEXT** — Provides workflow system for remaining epics
+3. **Core Groove Magic** — Complete remaining 2/8 stories USING Epic 7 workflows
+4. **Multi-Provider LLM** — Implement USING Epic 7 workflows
+5. **Settings & Persistence** — Implement USING Epic 7 workflows
+6. **First-Run Onboarding** — Implement USING Epic 7 workflows
+7. **Display Screen Polish** — Implement USING Epic 7 workflows
 
 **Context Incorporated:**
 - ✅ PRD requirements (58 FRs)
@@ -1133,5 +1244,12 @@ _For implementation: Use the `create-story` workflow to generate individual stor
 _Created through BMAD Method: PM Agent (John) with Fab_
 
 _Date: 2025-11-26_
+
+
+
+
+
+
+
 
 
