@@ -83,14 +83,6 @@ export default [
     }
   },
 
-  // CommonJS files in src/node (M4L compatibility)
-  {
-    files: ['src/node/**/*.js'],
-    languageOptions: {
-      sourceType: 'commonjs'
-    }
-  },
-
   // Test files
   {
     files: ['tests/**/*.js'],

@@ -1,0 +1,115 @@
+{
+  "valid_commands": {
+    "workflow_research": {
+      "cmd": "workflow:research",
+      "id": "test-001",
+      "params": {
+        "artist_name": "J Dilla",
+        "llm_provider": "ollama",
+        "intensity": 150
+      }
+    },
+    "workflow_develop": {
+      "cmd": "workflow:develop",
+      "id": "test-002",
+      "params": {
+        "task_description": "Implement MIDI velocity transformation function",
+        "target_modules": ["src/node/midi/velocity.js"],
+        "quality_threshold": 0.9
+      }
+    },
+    "workflow_document": {
+      "cmd": "workflow:document",
+      "id": "test-003",
+      "params": {
+        "target_files": ["src/node/commands/workflow-dispatcher.js"],
+        "include_tests": true
+      }
+    },
+    "swarm_start": {
+      "cmd": "swarm:start",
+      "id": "test-004",
+      "params": {
+        "task_type": "custom",
+        "context": {
+          "epic": "7",
+          "story": "7.5",
+          "complexity": "high"
+        }
+      }
+    }
+  },
+
+  "invalid_commands": {
+    "missing_artist_name": {
+      "cmd": "workflow:research",
+      "id": "test-005",
+      "params": {
+        "llm_provider": "ollama"
+      }
+    },
+    "empty_artist_name": {
+      "cmd": "workflow:research",
+      "id": "test-006",
+      "params": {
+        "artist_name": ""
+      }
+    },
+    "missing_task_description": {
+      "cmd": "workflow:develop",
+      "id": "test-007",
+      "params": {
+        "target_modules": ["src/node/midi/velocity.js"]
+      }
+    },
+    "empty_target_files": {
+      "cmd": "workflow:document",
+      "id": "test-008",
+      "params": {
+        "target_files": []
+      }
+    },
+    "invalid_target_files_type": {
+      "cmd": "workflow:document",
+      "id": "test-009",
+      "params": {
+        "target_files": "src/node/utils/telis-loader.js"
+      }
+    },
+    "missing_task_type": {
+      "cmd": "swarm:start",
+      "id": "test-010",
+      "params": {
+        "context": {}
+      }
+    }
+  },
+
+  "expected_responses": {
+    "workflow_research_success": {
+      "id": "test-001",
+      "success": true,
+      "data": {
+        "status": "workflow_initiated",
+        "workflow": "groove-research",
+        "workflow_path": ".bmad/custom/workflows/groove-research/workflow.md",
+        "parameters": {
+          "artist_name": "J Dilla",
+          "llm_provider": "ollama",
+          "intensity": 150
+        },
+        "message": "Groove research workflow will be triggered in Story 7.4",
+        "next_steps": [
+          "Story 7.2: Implement TELIS shard auto-loader",
+          "Story 7.3: Create BMAD agent definitions",
+          "Story 7.4: Implement groove-research workflow"
+        ]
+      }
+    },
+    "invalid_params_error": {
+      "id": "test-005",
+      "success": false,
+      "error": "Missing required parameter: artist_name"
+    }
+  }
+}

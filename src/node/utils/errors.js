@@ -140,11 +140,5 @@ function createError(code, message, suggestion) {
   };
 }
 
-// CommonJS exports
-module.exports = {
-  ErrorCode,
-  getSuggestion,
-  categorizeError,
-  createError,
-  DEFAULT_SUGGESTION
-};
+// ESM exports
+export { ErrorCode, getSuggestion, categorizeError, createError, DEFAULT_SUGGESTION };

@@ -8,8 +8,8 @@
  * @module workflow-dispatcher
  */
 
-const { info } = require('../utils/logger.js');
-const { ErrorCode } = require('../utils/errors.js');
+import { info } from '../utils/logger.js';
+import { ErrorCode } from '../utils/errors.js';
 
 // ============================================================================
 // Type Definitions (JSDoc)
@@ -257,7 +257,7 @@ function handleSwarmStart(params) {
 // Exports
 // ============================================================================
 
-module.exports = {
+export {
   handleWorkflowResearch,
   handleWorkflowDevelop,
   handleWorkflowDocument,

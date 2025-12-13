@@ -141,15 +141,5 @@ function warn(context, message, data = null) {
   log(Level.WARN, context, message, data);
 }
 
-// CommonJS exports
-module.exports = {
-  LOG_PREFIX,
-  Level,
-  setMaxApiPost,
-  setTimestamp,
-  log,
-  info,
-  error,
-  debug,
-  warn
-};
+// ESM exports
+export { LOG_PREFIX, Level, setMaxApiPost, setTimestamp, log, info, error, debug, warn };
