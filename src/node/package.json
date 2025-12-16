@@ -2,7 +2,7 @@
   "name": "grooveagent-node",
   "version": "1.0.0",
   "description": "GrooveAgent Node.js module for Max for Live",
-  "type": "commonjs",
+  "type": "module",
   "main": "index.js",
   "scripts": {
     "test": "jest",
