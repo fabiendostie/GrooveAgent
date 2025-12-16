@@ -97,3 +97,6 @@ yarn-error.log*
 /docs/
 /bmad-custom-src/
 nul
+/tests/
+src/max/GrooveAgent2.amxd
+src/max/GrooveAgent.maxpat
