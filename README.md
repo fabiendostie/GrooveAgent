@@ -11,8 +11,12 @@
 [![Coverage](https://img.shields.io/badge/Coverage-93.3%25-brightgreen?style=for-the-badge&logo=jest&logoColor=white)](#testing)
 
 <br/>
-
-<img src="https://raw.githubusercontent.com/simple-icons/simple-icons/develop/icons/abletonlive.svg" width="120" alt="Ableton Live"/>
+<img src="https://upload.wikimedia.org/wikipedia/commons/0/09/Ableton_Live_Logo.svg" width="200" alt="Ableton Live" class="invert"/>
+<style>
+.invert {
+  filter: invert(1);
+}   
+</style>
 
 <br/>
 
@@ -104,23 +108,23 @@ npm install
 ```
 ┌─────────────────────────────────────────────────────────────────────────┐
 │                                                                         │
-│   📝 Artist Input          🔍 AI Research           🧪 Groove Recipe    │
-│   ──────────────────────────────────────────────────────────────────   │
+│   📝 Artist Input     🔍 AI Research          🧪 Groove Recipe         │
+│   ───────────────────────────────────────────────────────────────────   │
 │                                                                         │
-│   "J Dilla"      →    Research swing,     →    {                       │
-│                       timing patterns,          swing: 0.67,           │
-│                       velocity curves           push_pull: [-12, 8],   │
-│                       from 4+ sources           ghost_threshold: 40    │
+│   "J Dilla"      →    Research swing,     →    {                        │
+│                       timing patterns,           swing: 0.67,           │
+│                       velocity curves            push_pull: [-12, 8],   │
+│                       from 4+ sources            ghost_threshold: 40    │
 │                                                }                        │
 │                                                                         │
 ├─────────────────────────────────────────────────────────────────────────┤
 │                                                                         │
-│   🎹 MIDI Input           🔄 Transform            🎶 Output            │
-│   ──────────────────────────────────────────────────────────────────   │
+│   🎹 MIDI Input       🔄 Transform            🎶 Output                │
+│   ───────────────────────────────────────────────────────────────────   │
 │                                                                         │
-│   Your clip       →    Apply timing,      →    Transformed clip       │
-│   [straight]           velocity, &             [with groove feel]      │
-│                        articulation                                     │
+│   Your clip      →    Apply timing,       →    Transformed clip         │
+│   [straight]          velocity, &              [with groove feel]       │
+│                       articulation                                      │
 │                                                                         │
 └─────────────────────────────────────────────────────────────────────────┘
 ```
@@ -273,11 +277,11 @@ This project is licensed under the **ISC License** - see the [LICENSE](LICENSE) 
 
 <div align="center">
 
-**Made with 🎹 for music producers who want that *feel***
+**Made with ❤️ for music producers who want that *feel***
 
 <br/>
 
-*GrooveAgent is not affiliated with Ableton AG.*
+*GrooveAgent is not affiliated in any way with Ableton AG.*
 
 </div>
 

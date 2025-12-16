@@ -41,6 +41,14 @@ CLAUDE.md
 # AI agent artifacts
 agent-tools/
 
+# AI story context files
+*.context.xml
+
+# BMAD session/workflow files
+bmm-*.md
+bmm-*.yaml
+Token-Efficient_Language_Intelligence_System_TELIS.md
+
 # =============================================================================
 # Working Files & Notes
 # =============================================================================
@@ -81,3 +89,11 @@ yarn-error.log*
 .cache/
 .eslintcache
 .prettiercache
+
+# =============================================================================
+# Project Specific Ignores
+# =============================================================================
+/.antigravity/
+/docs/
+/bmad-custom-src/
+nul
